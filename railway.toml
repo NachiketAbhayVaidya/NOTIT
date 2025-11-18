@@ -4,5 +4,5 @@ builder = "heroku/buildpacks:20"
 [env]
 PYTHONUNBUFFERED = "True"
 
-[start]
-cmd = "python main.py"
+[deploy]
+start = "uvicorn main:app --host 0.0.0.0 --port $PORT"
