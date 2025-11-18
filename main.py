@@ -9,7 +9,8 @@ app = FastAPI()
 
 @app.get("/ping")
 def ping():
-    return {"msg": "pong"}
+    return {"status": "running"}
+
 
 @app.post("/generate-notes")
 async def generate_notes_api(data: dict):
