@@ -11,6 +11,10 @@ app = FastAPI()
 def ping():
     return {"status": "running"}
 
+# NEW: Fix Railway health check
+@app.get("/generate-notes/ping")
+def ping2():
+    return {"status": "running"}
 
 @app.post("/generate-notes")
 async def generate_notes_api(data: dict):
@@ -18,23 +22,18 @@ async def generate_notes_api(data: dict):
     if not topic:
         return {"error": "No topic provided"}
 
-    # 1. Generate notes using AI
     notes_text = generate_notes(topic)
 
-    # 2. Create PDF filename
     filename = f"{uuid.uuid4()}.pdf"
     filepath = os.path.join(".", filename)
 
-    # 3. Generate PDF
     create_pdf(notes_text, filepath)
 
-    # 4. Return PDF file to Flutter
     return FileResponse(
         path=filepath,
         media_type="application/pdf",
         filename=f"{topic}.pdf"
     )
-
 
 import uvicorn
 
