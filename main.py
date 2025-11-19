@@ -11,6 +11,10 @@ app = FastAPI()
 def ping():
     return {"status": "running"}
 
+@app.get("/generate-notes/ping")
+def ping2():
+    return {"status": "running"}
+
 # NEW: Fix Railway health check
 @app.get("/generate-notes/ping")
 def ping2():
