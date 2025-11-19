@@ -7,15 +7,12 @@ import os
 
 app = FastAPI()
 
+# Flutter health check
 @app.get("/ping")
 def ping():
     return {"status": "running"}
 
-@app.get("/generate-notes/ping")
-def ping2():
-    return {"status": "running"}
-
-# NEW: Fix Railway health check
+# Railway health check (only once)
 @app.get("/generate-notes/ping")
 def ping2():
     return {"status": "running"}
