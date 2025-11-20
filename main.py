@@ -8,7 +8,7 @@ import os
 
 app = FastAPI()
 
-# Allow all platforms (Flutter Android / iOS)
+
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"],
